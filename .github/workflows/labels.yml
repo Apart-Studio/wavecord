@@ -1,89 +1,24 @@
-# Type: what kind of change or report it is
-- name: bug
-  color: d73a4a
-  description: Something is not working
-- name: enhancement
-  color: a2eeef
-  description: Improvement to existing behaviour
-- name: feature
-  color: 0e8a16
-  description: New feature or request
-- name: documentation
-  color: 0075ca
-  description: Documentation only
-- name: performance
-  color: fbca04
-  description: Speed, memory, or throughput
-- name: refactor
-  color: 5319e7
-  description: Internal cleanup, no behaviour change
-- name: security
-  color: b60205
-  description: Security-related issue or fix
-- name: breaking change
-  color: d93f0b
-  description: Breaks backward compatibility
+name: Labels
 
-# Area: which part of the project it touches
-- name: "area: rust-core"
-  color: 006b75
-  description: The Rust engine (wavecord-core / wavecord-py)
-- name: "area: python"
-  color: 006b75
-  description: The Python API and package
-- name: "area: adapters"
-  color: 006b75
-  description: discord.py, py-cord, disnake, nextcord
-- name: "area: protocol"
-  color: 006b75
-  description: Lavalink v3 / v4 handling
-- name: "area: plugins"
-  color: 006b75
-  description: LavaSrc, LavaSearch, LavaLyrics, SponsorBlock
-- name: "area: ci"
-  color: 006b75
-  description: Build, CI, release, tooling
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/labels.yml
+      - .github/workflows/labels.yml
+  workflow_dispatch:
 
-# Priority
-- name: "priority: high"
-  color: b60205
-  description: Should be addressed soon
-- name: "priority: low"
-  color: 0e8a16
-  description: Nice to have, no rush
+permissions:
+  issues: write
 
-# Status / workflow
-- name: "needs triage"
-  color: ededed
-  description: Awaiting a first look
-- name: "status: blocked"
-  color: e11d21
-  description: Blocked by something else
-- name: "status: in progress"
-  color: fbca04
-  description: Actively being worked on
-
-# Community
-- name: good first issue
-  color: 7057ff
-  description: Good for newcomers
-- name: help wanted
-  color: 008672
-  description: Extra attention is wanted
-- name: question
-  color: d876e3
-  description: Further information is requested
-- name: dependencies
-  color: 0366d6
-  description: Dependency updates (used by Renovate)
-
-# Resolution
-- name: duplicate
-  color: cfd3d7
-  description: This issue or pull request already exists
-- name: invalid
-  color: e4e669
-  description: Does not follow the guidelines or template
-- name: wontfix
-  color: ffffff
-  description: This will not be worked on
+jobs:
+  sync:
+    name: Sync labels
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: crazy-max/ghaction-github-labeler@v6.0.0
+        with:
+          yaml-file: .github/labels.yml
+          skip-delete: false
+          dry-run: false
