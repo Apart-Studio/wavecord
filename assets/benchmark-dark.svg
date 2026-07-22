@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <rect width="760" height="300" rx="14" fill="#0d1117"/>
+  <text x="34" y="48" font-size="23" font-weight="700" fill="#e6edf3">Event throughput under a burst of Lavalink events</text>
+  <text x="34" y="74" font-size="13.5" fill="#8b949e">Higher is better. Measured against the real Rust path: 500k player updates, localhost.</text>
+
+  <!-- pure-Python row -->
+  <text x="34" y="140" font-size="15" font-weight="600" fill="#adbac7">pure-Python</text>
+  <rect x="34" y="152" width="333" height="34" rx="6" fill="#30363d"/>
+  <text x="380" y="174" font-size="15" font-weight="600" fill="#8b949e">170,000 ev/s</text>
+
+  <!-- WaveCord row -->
+  <text x="34" y="212" font-size="15" font-weight="700" fill="#e6edf3">WaveCord</text>
+  <rect x="34" y="224" width="451" height="34" rx="6" fill="#1db954"/>
+  <text x="498" y="246" font-size="15" font-weight="700" fill="#e6edf3">230,000 ev/s</text>
+  <rect x="631" y="228" width="95" height="26" rx="13" fill="#e6edf3"/>
+  <text x="678" y="246" font-size="14" font-weight="700" fill="#0d1117" text-anchor="middle">1.35x</text>
+
+  <text x="34" y="288" font-size="12.5" fill="#6e7681">Reproduce with: python benchmarks/off_gil.py</text>
+</svg>
