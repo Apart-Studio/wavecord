@@ -1,0 +1,32 @@
+# Rust
+/target
+**/*.rs.bk
+Cargo.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+.eggs/
+
+# maturin
+/wheels
+
+# Local Lavalink binaries and runtime logs
+*.jar
+*.log
+
+# Runtime artifacts (e.g. the resume example's persisted session id)
+wavecord_session.json
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
