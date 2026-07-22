@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Optional, Union
 
 import msgspec
 
@@ -19,9 +19,9 @@ class TrackInfo(msgspec.Struct, rename="camel"):
     is_seekable: bool = False
     is_stream: bool = False
     position: int = 0
-    uri: str | None = None
-    artwork_url: str | None = None
-    isrc: str | None = None
+    uri: Optional[str] = None
+    artwork_url: Optional[str] = None
+    isrc: Optional[str] = None
     source_name: str = ""
 
 
@@ -29,17 +29,17 @@ class Track(msgspec.Struct, rename="camel"):
     """A track: its encoded string, metadata, and plugin/user data."""
 
     encoded: str
-    info: TrackInfo | None = None
-    plugin_info: dict | None = None
-    user_data: dict | None = None
+    info: Optional[TrackInfo] = None
+    plugin_info: Optional[dict] = None
+    user_data: Optional[dict] = None
 
 
 class Exception_(msgspec.Struct, rename="camel"):
     """A Lavalink exception attached to a track event."""
 
-    message: str | None = None
+    message: Optional[str] = None
     severity: str = ""
-    cause: str | None = None
+    cause: Optional[str] = None
 
 
 class PlayerState(msgspec.Struct, rename="camel"):
@@ -71,9 +71,9 @@ class Stats(msgspec.Struct, tag_field="op", tag="stats", rename="camel"):
     players: int = 0
     playing_players: int = 0
     uptime: int = 0
-    memory: dict | None = None
-    cpu: dict | None = None
-    frame_stats: dict | None = None
+    memory: Optional[dict] = None
+    cpu: Optional[dict] = None
+    frame_stats: Optional[dict] = None
 
 
 class Event(msgspec.Struct, tag_field="op", tag="event", rename="camel"):
@@ -82,19 +82,19 @@ class Event(msgspec.Struct, tag_field="op", tag="event", rename="camel"):
 
     type: str
     guild_id: str
-    track: Track | None = None
-    reason: str | None = None
-    exception: Exception_ | None = None
-    threshold_ms: int | None = None
-    code: int | None = None
-    by_remote: bool | None = None
-    segments: list | None = None
-    segment: dict | None = None
-    chapters: list | None = None
-    chapter: dict | None = None
-    lyrics: dict | None = None
-    line_index: int | None = None
-    line: dict | None = None
+    track: Optional[Track] = None
+    reason: Optional[str] = None
+    exception: Optional[Exception_] = None
+    threshold_ms: Optional[int] = None
+    code: Optional[int] = None
+    by_remote: Optional[bool] = None
+    segments: Optional[list] = None
+    segment: Optional[dict] = None
+    chapters: Optional[list] = None
+    chapter: Optional[dict] = None
+    lyrics: Optional[dict] = None
+    line_index: Optional[int] = None
+    line: Optional[dict] = None
 
 
 Message = Union[Ready, PlayerUpdate, Stats, Event]
@@ -106,7 +106,7 @@ class _Peek(msgspec.Struct):
     """Minimal struct to name a message without a full decode."""
 
     op: str
-    type: str | None = None
+    type: Optional[str] = None
 
 
 _peek_decoder = msgspec.json.Decoder(_Peek)
