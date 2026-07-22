@@ -5,7 +5,6 @@ the channel - tested against a fake VoiceProtocol base, so no Discord library is
 required to run the suite."""
 
 import pytest
-
 from wavecord.adapters._base import build_voice_client
 
 
