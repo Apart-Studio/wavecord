@@ -10,7 +10,7 @@
 [![Rust core](https://img.shields.io/badge/core-Rust-000000?style=for-the-badge&logo=rust&logoColor=DEA584)](https://www.rust-lang.org/)
 
 [![Lavalink](https://img.shields.io/badge/Lavalink-v3%20%7C%20v4-1DB954?style=for-the-badge)](https://lavalink.dev)
-[![CI](https://img.shields.io/github/actions/workflow/status/Apart-Studio/wavecord/ci.yml?style=for-the-badge&logo=github&logoColor=white&label=CI)](https://github.com/Apart-studio/wavecord/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/Apart-Studio/wavecord/ci.yml?style=for-the-badge&logo=github&logoColor=white&label=CI)](https://github.com/Apart-Studio/wavecord/actions/workflows/ci.yml)
 [![License](https://img.shields.io/pypi/l/wavecord?style=for-the-badge&color=green)](LICENSE)
 
 </div>
@@ -120,13 +120,23 @@ A fuller bot is in [examples/discordpy_basic.py](examples/discordpy_basic.py).
 
 ## Performance
 
-Event decoding runs at msgspec speed, which is the practical floor for turning
-JSON into Python objects. The real advantage is architectural: because the
-WebSocket read, JSON parse, and v3/v4 normalization happen in Rust off the GIL,
-the asyncio loop only pays for the final decode. In a burst benchmark, WaveCord
-sustained roughly 3x the event throughput with about 3.6x less event-loop jitter
-than an equivalent pure-Python path. Busy bots also benefit from batched event
-delivery and from skipping the decode of events that have no listener.
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/benchmark-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/benchmark-light.svg">
+    <img alt="Event throughput: WaveCord sustains about 1.35x the events per second of a pure-Python client." src="assets/benchmark-light.svg" width="760">
+  </picture>
+</p>
+
+A Lavalink client cannot make playback itself faster, since the audio work
+happens on the Lavalink server. WaveCord's edge is architectural: the WebSocket
+read, JSON parse, and v3/v4 normalization run in native Rust off the GIL, so the
+asyncio event loop only pays for the final msgspec decode. In a burst benchmark
+against the real Rust path (500k player updates), WaveCord sustained roughly
+1.35x the event throughput of an equivalent pure-Python client, and kept the
+typical (median) event-loop latency about 2x lower. Batched delivery trades a
+little tail latency for that throughput; drop the `next_events` batch size if you
+prefer smoother tails. Reproduce it yourself with `python benchmarks/off_gil.py`.
 
 ## Architecture
 
@@ -143,9 +153,9 @@ Rust core (tokio): WebSocket, REST, Protocol(v3/v4), reconnect, node manager
 ## Development
 
 ```bash
-maturin develop # build the extension into the active venv
-cargo test # Rust tests (no Python needed)
-pytest # Python tests
+maturin develop      # build the extension into the active venv
+cargo test           # Rust tests (no Python needed)
+pytest               # Python tests
 ```
 
 To try it end to end you need a running [Lavalink](https://lavalink.dev) node
