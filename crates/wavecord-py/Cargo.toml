@@ -1,0 +1,21 @@
+[package]
+name = "wavecord-py"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "PyO3 bindings for WaveCord."
+
+[lib]
+name = "_wavecord"
+crate-type = ["cdylib"]
+
+[dependencies]
+wavecord-core = { path = "../wavecord-core" }
+pyo3 = { workspace = true, features = ["extension-module"] }
+pyo3-async-runtimes.workspace = true
+pythonize = "0.29"
+serde.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
