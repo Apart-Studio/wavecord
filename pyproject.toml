@@ -59,3 +59,6 @@ line-length = 100
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B"]
 per-file-ignores = { "examples/*" = ["E501"] }
+
+[tool.ruff.lint.pyupgrade]
+keep-runtime-typing = true
