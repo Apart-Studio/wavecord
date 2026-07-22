@@ -1,0 +1,61 @@
+[build-system]
+requires = ["maturin>=1.7,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "wavecord"
+description = "High-performance Lavalink v3/v4 client with a Rust core. Library-agnostic (discord.py, py-cord, disnake, nextcord)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "WaveCord contributors" }]
+keywords = ["lavalink", "discord", "music", "voice", "audio", "rust", "discord.py"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: AsyncIO",
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed",
+]
+dynamic = ["version"]
+dependencies = ["msgspec>=0.18"]
+
+[project.optional-dependencies]
+discordpy = ["discord.py>=2.3"]
+pycord = ["py-cord>=2.5"]
+disnake = ["disnake>=2.9"]
+nextcord = ["nextcord>=2.6"]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "ruff>=0.5", "maturin>=1.7"]
+
+[project.urls]
+Homepage = "https://github.com/Apart-Studio/wavecord"
+Repository = "https://github.com/Apart-Studio/wavecord"
+Changelog = "https://github.com/Apart-Studio/wavecord/blob/main/CHANGELOG.md"
+Issues = "https://github.com/Apart-Studio/wavecord/issues"
+
+[tool.maturin]
+manifest-path = "crates/wavecord-py/Cargo.toml"
+python-source = "python"
+module-name = "wavecord._wavecord"
+features = ["pyo3/extension-module"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+per-file-ignores = { "examples/*" = ["E501"] }
