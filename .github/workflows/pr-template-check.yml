@@ -58,7 +58,7 @@ jobs:
               await github.rest.issues.createLabel({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                name: "Invalid",
+                name: "invalid",
                 color: "e4e669",
                 description: "Does not follow the pull request template",
               });
