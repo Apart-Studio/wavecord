@@ -4,6 +4,8 @@
 the channel - tested against a fake VoiceProtocol base, so no Discord library is
 required to run the suite."""
 
+import pytest
+
 from wavecord.adapters._base import build_voice_client
 
 
@@ -75,6 +77,15 @@ async def test_connect_and_disconnect_change_voice_state():
     assert node.destroyed == ["4242"]
 
 
-def test_all_adapter_modules_expose_the_class():
-    from wavecord.adapters.discordpy import WaveCordVoiceClient
-    assert hasattr(WaveCordVoiceClient, "with_node")
+@pytest.mark.parametrize(
+    "module",
+    [
+        "wavecord.adapters.discordpy",
+        "wavecord.adapters.pycord",
+        "wavecord.adapters.disnake",
+        "wavecord.adapters.nextcord",
+    ],
+)
+def test_all_adapter_modules_expose_the_class(module):
+    mod = pytest.importorskip(module)
+    assert hasattr(mod.WaveCordVoiceClient, "with_node")
