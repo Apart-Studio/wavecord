@@ -10,6 +10,9 @@
   "lockFileMaintenance": {
     "enabled": true
   },
+  "pre-commit": {
+    "enabled": true
+  },
   "packageRules": [
     {
       "matchManagers": ["cargo"],
@@ -23,6 +26,10 @@
       "matchManagers": ["github-actions"],
       "groupName": "github actions",
       "pinDigests": true
+    },
+    {
+      "matchManagers": ["pre-commit"],
+      "groupName": "pre-commit hooks"
     }
   ]
 }
