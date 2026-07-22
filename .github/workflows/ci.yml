@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint (rustfmt, clippy, ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: rustfmt
+        run: cargo fmt --all --check
+
+      - name: clippy
+        run: cargo clippy --all-targets --all-features -- -D warnings
+
+      - name: ruff
+        run: |
+          python -m pip install --upgrade ruff
+          ruff check .
+
+  test:
+    name: Test (${{ matrix.os }}, Python ${{ matrix.python-version }})
+    needs: lint
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        include:
+          - os: macos-latest
+            python-version: "3.11"
+          - os: windows-latest
+            python-version: "3.11"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Rust tests
+        run: cargo test -p wavecord-core
+
+      - name: Build extension and install test deps
+        run: |
+          python -m pip install --upgrade pip maturin pytest pytest-asyncio
+          maturin develop
+
+      - name: Python tests
+        run: pytest
