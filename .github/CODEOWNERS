@@ -1,0 +1,13 @@
+# Code owners for WaveCord.
+
+# Default owner for everything in the repository.
+* @Error44s
+
+# Rust core and PyO3 bindings.
+/crates/ @Error44s
+
+# Python package and Discord-library adapters.
+/python/ @Error44s
+
+# CI, workflows, and repository automation.
+/.github/ @Error44s
