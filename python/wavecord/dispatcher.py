@@ -9,7 +9,7 @@ import inspect
 import logging
 from collections import defaultdict
 from collections.abc import Awaitable
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 
 from . import events
 from ._wavecord import Node
@@ -17,7 +17,7 @@ from .events import decode as decode_event
 
 log = logging.getLogger("wavecord")
 
-Handler = Callable[[Any], Awaitable[None] | None]
+Handler = Callable[[Any], Optional[Awaitable[None]]]
 
 
 class EventDispatcher:
