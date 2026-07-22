@@ -176,6 +176,16 @@ By taking part in this project you agree to abide by our
 
 [![Contributors](https://contrib.rocks/image?repo=Apart-Studio/wavecord)](https://github.com/Apart-Studio/wavecord/graphs/contributors)
 
-## License
+<br>
 
-WaveCord is released under the [MIT License](LICENSE).
+<p align="center">
+  <img src="assets/wave-footer.svg" alt="" width="100%">
+</p>
+
+<p align="center">
+  <b>WaveCord</b> &nbsp;&middot;&nbsp; Lavalink, in Rust and Python<br>
+  <a href="https://github.com/Apart-Studio/wavecord#readme">Documentation</a> &nbsp;&middot;&nbsp;
+  <a href="CHANGELOG.md">Changelog</a> &nbsp;&middot;&nbsp;
+  <a href="CONTRIBUTING.md">Contributing</a><br>
+  Licensed under the MIT License &nbsp;&middot;&nbsp; Copyright © 2026 WaveCord Contributors
+</p>
