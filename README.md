@@ -107,7 +107,7 @@ async def play(ctx, *, query: str):
 bot.run("YOUR_TOKEN")
 ```
 
-A fuller bot is in [examples/discordpy_basic.py](examples/discordpy_basic.py).
+A fuller bot is in [examples/music_bot.py](examples/music_bot.py).
 
 ## Supported Discord libraries
 
