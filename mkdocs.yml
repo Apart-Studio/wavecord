@@ -1,0 +1,90 @@
+site_name: WaveCord
+site_description: High-performance Lavalink v3/v4 client for Python, powered by a Rust core.
+site_url: https://wavecord.readthedocs.io/
+repo_name: Apart-Studio/wavecord
+repo_url: https://github.com/Apart-Studio/wavecord
+edit_uri: edit/main/docs/
+copyright: Copyright (c) 2026 WaveCord contributors
+
+theme:
+  name: material
+  language: en
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: light blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Apart-Studio/wavecord
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/wavecord/
+
+nav:
+  - Home: index.md
+  - Getting started:
+      - Installation: installation.md
+      - Quick start: quickstart.md
+  - Guide:
+      - Nodes and connecting: guide/nodes.md
+      - Players and playback: guide/players.md
+      - Events: guide/events.md
+      - Queue: guide/queue.md
+      - Filters and equalizer: guide/filters.md
+      - Searching and sources: guide/sources.md
+      - Node pool and scaling: guide/pool.md
+      - Plugins: guide/plugins.md
+      - Metrics: guide/metrics.md
+      - Surviving restarts: guide/resuming.md
+  - Discord libraries: adapters.md
+  - API reference: reference.md
+  - Changelog: changelog.md
