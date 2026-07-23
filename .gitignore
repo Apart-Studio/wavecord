@@ -30,3 +30,6 @@ wavecord_session.json
 .DS_Store
 .idea/
 .vscode/
+
+# MkDocs build output
+site/
