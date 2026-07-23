@@ -35,6 +35,7 @@ pycord = ["py-cord>=2.5"]
 disnake = ["disnake>=2.9"]
 nextcord = ["nextcord>=2.6"]
 dev = ["pytest>=8", "pytest-asyncio>=0.23", "ruff>=0.5", "maturin>=1.7"]
+docs = ["mkdocs-material>=9.5"]
 
 [project.urls]
 Homepage = "https://github.com/Apart-Studio/wavecord"
