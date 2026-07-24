@@ -11,7 +11,7 @@
 
 [![Lavalink](https://img.shields.io/badge/Lavalink-v3%20%7C%20v4-1DB954?style=for-the-badge)](https://lavalink.dev)
 [![CI](https://img.shields.io/github/actions/workflow/status/Apart-Studio/wavecord/ci.yml?style=for-the-badge&logo=github&logoColor=white&label=CI)](https://github.com/Apart-Studio/wavecord/actions/workflows/ci.yml)
-[![License](https://img.shields.io/pypi/l/wavecord?style=for-the-badge&color=green)](LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 </div>
 
@@ -174,7 +174,7 @@ By taking part in this project you agree to abide by our
 
 ## Contributors
 
-[![Contributors](https://contrib.rocks/image?repo=Apart-Studio/wavecord)](https://github.com/Apart-Studio/wavecord/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=Apart-Studio/wavecord&v=2)](https://github.com/Apart-Studio/wavecord/graphs/contributors)
 
 <br>
 
