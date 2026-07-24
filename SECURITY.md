@@ -16,7 +16,7 @@ Please do not report security vulnerabilities through public issues.
 
 Instead, use GitHub's private vulnerability reporting on this repository
 (the "Report a vulnerability" button under the Security tab), or contact a
-maintainer directly. 
+maintainer directly.
 
 Include:
 - a description of the issue and its impact,
