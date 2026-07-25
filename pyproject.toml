@@ -48,6 +48,7 @@ manifest-path = "crates/wavecord-py/Cargo.toml"
 python-source = "python"
 module-name = "wavecord._wavecord"
 features = ["pyo3/extension-module"]
+include = [{ path = "LICENSE", format = "sdist" }]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
